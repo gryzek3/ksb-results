@@ -1,0 +1,10 @@
+<input id="LicenseNo" type="text" />
+<button id="GetRequest">Pobierz</button>
+
+<script>
+    document.getElementById("GetRequest").onclick = function (e) {
+        e.preventDefault();
+        var licenseNumber = document.getElementById("LicenseNo").value;
+        window.location = "https://wnioski.ksb.org.pl/wniosek/" + licenseNumber + ".docx";
+    };
+</script>
