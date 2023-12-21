@@ -1,5 +1,6 @@
 using Google.Apis.Auth.AspNetCore3;
 using KSB.Results.LicenseRequest;
+using KSB.Results.LiveResults;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Text.Json.Serialization;
 var builder = WebApplication.CreateSlimBuilder(args);
@@ -32,25 +33,36 @@ builder.Services
            options.Scope.Add("https://www.googleapis.com/auth/spreadsheets");
 
        });
+
 builder.Services.AddTransient<LicenseRequestsGenerator>()
     .AddTransient<LicenseRequestDocumentCreator>()
     .AddTransient<AppJsonSerializerContext>()
-    .AddTransient<StartsFromSpreadSheetLoader>();
+    .AddTransient<StartsFromSpreadSheetLoader>()
+    .AddSignalR();
+builder.Services.AddCors();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors(builder => builder.WithOrigins(
+                    app.Configuration.GetValue<string>("CorsAllowedOrigins")!.Split(";")
+                    )
+                .SetPreflightMaxAge(TimeSpan.FromSeconds(2520))
+                .WithMethods("PUT", "DELETE", "GET", "POST", "OPTIONS")
+                .AllowAnyHeader()
+                .AllowCredentials());
 
-
-app.MapGet("/", async (LicenseRequestsGenerator worker) => await worker.Run()).RequireAuthorization();
-
+app.MapGet("/generateLicenseRequests", async (LicenseRequestsGenerator worker) => await worker.Run()).RequireAuthorization();
+app.MapHub<LiveResultsHub>("/LiveResultsHub");
 
 app.Run();
 
 
 [JsonSerializable(typeof(PlayerStart))]
 [JsonSerializable(typeof(PlayerStartsResult[]))]
+[JsonSerializable(typeof(PlayerRunResult[]))]
+[JsonSerializable(typeof(SingleResult))]
 public partial class AppJsonSerializerContext : JsonSerializerContext
 {
 
