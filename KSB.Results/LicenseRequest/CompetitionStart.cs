@@ -1,4 +1,4 @@
-﻿namespace KSB.Results
+﻿namespace KSB.Results.LicenseRequest
 {
 
     public record CompetitionStart(string CompetionName, GunType GunType, Round Round);

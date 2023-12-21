@@ -3,22 +3,24 @@ using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using System.Text.Json;
 
-namespace KSB.Results
+namespace KSB.Results.LicenseRequest
 {
     public class LicenseRequestsGenerator
     {
         private readonly IGoogleAuthProvider _auth;
         private readonly StartsFromSpreadSheetLoader _resultsLoader;
-        private readonly DocumentEditor _documentEditor;
+        private readonly LicenseRequestDocumentCreator _documentEditor;
         private readonly AppJsonSerializerContext _appJsonSerializerContext;
+        private readonly IConfiguration _configuration;
 
         public LicenseRequestsGenerator(IGoogleAuthProvider auth, StartsFromSpreadSheetLoader resultsLoader,
-            DocumentEditor documentEditor, AppJsonSerializerContext appJsonSerializerContext)
+            LicenseRequestDocumentCreator documentEditor, AppJsonSerializerContext appJsonSerializerContext, IConfiguration configuration)
         {
             _auth = auth;
             _resultsLoader = resultsLoader;
             _documentEditor = documentEditor;
             _appJsonSerializerContext = appJsonSerializerContext;
+            _configuration = configuration;
         }
         private async Task<FilesResource> Init()
         {
@@ -62,7 +64,7 @@ namespace KSB.Results
         private async Task<PlayerStartsResult[]> ReadResultsFromGoogleDriveFiles(string filePath)
         {
             var filesResource = await Init();
-            var id = "1z2HvT3G1JzWodRJkAdNkxp-2zocJf6AX";
+            var id = _configuration.GetValue<string>("CompetitionDirectoryId");
             var currentYear = DateTime.Now.Year.ToString();
             var years = await ListDirectoryFiles(filesResource, id);
             var currentYearId = years.Single(x => x.Name == currentYear).Id;

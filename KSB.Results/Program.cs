@@ -1,8 +1,7 @@
 using Google.Apis.Auth.AspNetCore3;
-using KSB.Results;
+using KSB.Results.LicenseRequest;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Text.Json.Serialization;
-
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services.ConfigureHttpJsonOptions(options =>
@@ -34,7 +33,7 @@ builder.Services
 
        });
 builder.Services.AddTransient<LicenseRequestsGenerator>()
-    .AddTransient<DocumentEditor>()
+    .AddTransient<LicenseRequestDocumentCreator>()
     .AddTransient<AppJsonSerializerContext>()
     .AddTransient<StartsFromSpreadSheetLoader>();
 

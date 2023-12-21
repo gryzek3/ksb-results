@@ -1,4 +1,4 @@
-﻿namespace KSB.Results
+﻿namespace KSB.Results.LicenseRequest
 {
     public enum GunType
     {

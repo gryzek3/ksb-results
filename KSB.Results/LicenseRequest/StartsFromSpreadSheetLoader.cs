@@ -2,7 +2,7 @@
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 
-namespace KSB.Results
+namespace KSB.Results.LicenseRequest
 {
     public class StartsFromSpreadSheetLoader
     {

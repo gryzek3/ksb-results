@@ -2,9 +2,9 @@
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace KSB.Results
+namespace KSB.Results.LicenseRequest
 {
-    public class DocumentEditor
+    public class LicenseRequestDocumentCreator
     {
         public void CreateLicenseRequest(PlayerStartsResult result)
         {
