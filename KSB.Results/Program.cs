@@ -57,6 +57,7 @@ app.UseCors(builder => builder.WithOrigins(
                 .AllowCredentials());
 
 app.MapGet("/generateLicenseRequests", async (LicenseRequestsGenerator worker) => await worker.Run()).RequireAuthorization();
+app.MapGet("/", () => "WOOOOOO!");
 app.MapHub<LiveResultsHub>("/LiveResultsHub");
 
 app.Run();

@@ -41,5 +41,5 @@ jobs:
           username: ksb-ftp
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./bin/output/
-          server-dir: ./
+          server-dir: ./results.ksb.org.pl/
 
