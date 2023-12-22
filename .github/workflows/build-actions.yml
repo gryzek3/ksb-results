@@ -33,7 +33,7 @@ jobs:
         if: ${{ steps.cache-dotnet.outputs.cache-hit != 'true' }}
         run: dotnet restore
       - name: publish
-        run: dotnet publish --configuration Release --no-restore --output bin\output --self-contained true
+        run: dotnet publish --configuration Release --no-restore --output bin\output --self-contained false
       - name: publish ftp
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
