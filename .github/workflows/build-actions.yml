@@ -21,13 +21,19 @@ jobs:
           pathtosettingsfile: '${{ github.workspace }}/KSB.Results/appsettings.json'
           name: "DataContext"
           connectionstring: "${{ secrets.CONNECTION_STRING }}"
-      # You can test your matrix by printing the current dotnet version
-      - name: Display dotnet version
-        run: dotnet --version
+      - name: cache-nugets
+        uses: actions/cache@v3
+        id: cache-nugets
+        with:
+          path: ${{ github.workspace }}/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
       - name: Restore
+        if: ${{ steps.cache-dotnet.outputs.cache-hit != 'true' }}
         run: dotnet restore
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release --arch x64 --os win
       - name: publish
         run: dotnet publish --arch x64 --configuration Release --no-restore --no-build --output bin\output --self-contained false --os win
       - name: publish ftp
