@@ -1,7 +1,9 @@
 using Google.Apis.Auth.AspNetCore3;
+using KSB.Results.Db;
 using KSB.Results.LicenseRequest;
 using KSB.Results.LiveResults;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -38,7 +40,8 @@ builder.Services.AddTransient<LicenseRequestsGenerator>()
     .AddTransient<LicenseRequestDocumentCreator>()
     .AddTransient<AppJsonSerializerContext>()
     .AddTransient<StartsFromSpreadSheetLoader>()
-    .AddSignalR();
+    .AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext")));
+builder.Services.AddSignalR();
 builder.Services.AddCors();
 
 var app = builder.Build();
