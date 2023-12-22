@@ -24,14 +24,18 @@ jobs:
       # You can test your matrix by printing the current dotnet version
       - name: Display dotnet version
         run: dotnet --version
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release
       - name: publish
-        run: dotnet publish --arch x64 --configuration Release --output bin\output --self-contained false --os win
+        run: dotnet publish --arch x64 --configuration Release --no-restore --no-build --output bin\output --self-contained false --os win
       - name: publish ftp
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.results.ksb.org.pl
           username: ksb-ftp
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./KSB.Results/bin/output/
+          local-dir: ./bin/output/
           server-dir: ./
 
