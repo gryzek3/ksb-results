@@ -1,0 +1,67 @@
+[15:29:19 DBG] Registered SignalR Protocol: json, implemented by Microsoft.AspNetCore.SignalR.Protocol.JsonHubProtocol.
+[15:29:19 DBG] Hosting starting
+[15:29:19 INF] User profile is available. Using 'C:\Users\DawidBorek\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[15:29:19 DBG] Reading data from file 'C:\Users\DawidBorek\AppData\Local\ASP.NET\DataProtection-Keys\key-776d18f3-1b65-4171-847d-0e75ae5a7559.xml'.
+[15:29:19 DBG] Reading data from file 'C:\Users\DawidBorek\AppData\Local\ASP.NET\DataProtection-Keys\key-83f01878-8290-4a22-80e0-beb0a2ad57d9.xml'.
+[15:29:19 DBG] Reading data from file 'C:\Users\DawidBorek\AppData\Local\ASP.NET\DataProtection-Keys\key-8681fd4b-30c7-4a15-b0d3-9b872e439ed1.xml'.
+[15:29:19 DBG] Reading data from file 'C:\Users\DawidBorek\AppData\Local\ASP.NET\DataProtection-Keys\key-cf21459a-256b-4469-8879-c3bc98dcfdd6.xml'.
+[15:29:19 DBG] Reading data from file 'C:\Users\DawidBorek\AppData\Local\ASP.NET\DataProtection-Keys\key-eea3971c-92ac-4c8e-96b2-4fd3c3997bad.xml'.
+[15:29:19 DBG] Found key {776d18f3-1b65-4171-847d-0e75ae5a7559}.
+[15:29:19 DBG] Found key {83f01878-8290-4a22-80e0-beb0a2ad57d9}.
+[15:29:19 DBG] Found key {8681fd4b-30c7-4a15-b0d3-9b872e439ed1}.
+[15:29:19 DBG] Found key {cf21459a-256b-4469-8879-c3bc98dcfdd6}.
+[15:29:19 DBG] Found key {eea3971c-92ac-4c8e-96b2-4fd3c3997bad}.
+[15:29:19 DBG] Considering key {eea3971c-92ac-4c8e-96b2-4fd3c3997bad} with expiration date 2024-03-17 08:18:11Z as default key.
+[15:29:19 DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+[15:29:19 DBG] Decrypting secret element using Windows DPAPI.
+[15:29:19 DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+[15:29:19 DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+[15:29:19 DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+[15:29:19 DBG] Using key {eea3971c-92ac-4c8e-96b2-4fd3c3997bad} as the default key.
+[15:29:19 DBG] Key ring with default key {eea3971c-92ac-4c8e-96b2-4fd3c3997bad} was loaded during application startup.
+[15:29:19 INF] Now listening on: http://localhost:5247
+[15:29:19 DBG] Loaded hosting startup assembly KSB.Results
+[15:29:19 DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+[15:29:19 DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+[15:29:19 INF] Application started. Press Ctrl+C to shut down.
+[15:29:19 INF] Hosting environment: Development
+[15:29:19 INF] Content root path: C:\Repos\KSB.Results\KSB.Results
+[15:29:19 DBG] Hosting started
+[15:29:20 DBG] Connection id "0HN02V9HDKRI8" accepted.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI7" accepted.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI8" received FIN.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI7" received FIN.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI7" started.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI8" started.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI7" sending FIN because: "The Socket transport's send loop completed gracefully."
+[15:29:20 DBG] Connection id "0HN02V9HDKRI8" sending FIN because: "The Socket transport's send loop completed gracefully."
+[15:29:20 DBG] Connection id "0HN02V9HDKRI7" disconnecting.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI8" disconnecting.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI8" stopped.
+[15:29:20 DBG] Connection id "0HN02V9HDKRI7" stopped.
+[15:29:23 DBG] Connection id "0HN02V9HDKRI9" accepted.
+[15:29:23 DBG] Connection id "0HN02V9HDKRI9" started.
+[15:29:23 INF] Request starting HTTP/1.1 GET http://localhost:5247/ - null null
+[15:29:23 DBG] Wildcard detected, all requests with hosts will be allowed.
+[15:29:23 DBG] 1 candidate(s) found for the request path '/'
+[15:29:23 DBG] Request matched endpoint 'HTTP: GET /'
+[15:29:23 WRN] Failed to determine the https port for redirect.
+[15:29:23 DBG] AuthenticationScheme: Cookies was not authenticated.
+[15:29:23 INF] Executing endpoint 'HTTP: GET /'
+[15:29:23 INF] Executed endpoint 'HTTP: GET /'
+[15:29:23 INF] HTTP GET / responded 200 in 13.2793 ms
+[15:29:23 DBG] Connection id "0HN02V9HDKRI9" completed keep alive response.
+[15:29:23 INF] Request finished HTTP/1.1 GET http://localhost:5247/ - 200 null text/plain; charset=utf-8 267.0804ms
+[15:29:27 INF] Request starting HTTP/1.1 GET http://localhost:5247/ - null null
+[15:29:27 DBG] 1 candidate(s) found for the request path '/'
+[15:29:27 DBG] Request matched endpoint 'HTTP: GET /'
+[15:29:27 DBG] AuthenticationScheme: Cookies was not authenticated.
+[15:29:27 INF] Executing endpoint 'HTTP: GET /'
+[15:29:27 INF] Executed endpoint 'HTTP: GET /'
+[15:29:27 INF] HTTP GET / responded 200 in 1.6598 ms
+[15:29:27 DBG] Connection id "0HN02V9HDKRI9" completed keep alive response.
+[15:29:27 INF] Request finished HTTP/1.1 GET http://localhost:5247/ - 200 null text/plain; charset=utf-8 15.3996ms
+[15:31:22 DBG] Connection id "0HN02V9HDKRI9" received FIN.
+[15:31:22 DBG] Connection id "0HN02V9HDKRI9" sending FIN because: "The Socket transport's send loop completed gracefully."
+[15:31:22 DBG] Connection id "0HN02V9HDKRI9" disconnecting.
+[15:31:22 DBG] Connection id "0HN02V9HDKRI9" stopped.

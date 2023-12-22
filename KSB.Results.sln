@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSB.Results", "KSB.Results\KSB.Results.csproj", "{DFA34B44-B27A-4A92-9EA9-3DFB3A3A678D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSB.Results", "KSB.Results\KSB.Results.csproj", "{DFA34B44-B27A-4A92-9EA9-3DFB3A3A678D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
