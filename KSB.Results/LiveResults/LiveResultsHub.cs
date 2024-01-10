@@ -21,6 +21,13 @@ namespace KSB.Results.LiveResults
         }
         private readonly DataContext _dataContext;
 
+        public override async Task OnConnectedAsync()
+        {
+
+            await base.OnConnectedAsync();
+            var client = Clients.Caller;
+            await SendResultsToCLients(client);
+        }
         public async Task SendResult(PlayerRunResult result)
         {
             await _dataContext.AddAsync(new StartResult
@@ -35,6 +42,11 @@ namespace KSB.Results.LiveResults
 
             });
             await _dataContext.SaveChangesAsync();
+            await SendResultsToCLients(Clients.All);
+        }
+
+        private async Task SendResultsToCLients(IClientProxy clientProxy)
+        {
             var newResults = await _dataContext.StartResults.OrderByDescending(x => x.TimeStamp)
                 .Where(x => x.TimeStamp >= DateTime.UtcNow.AddHours(-1))
                 .Select(x => new PlayerRunResult
@@ -44,7 +56,7 @@ namespace KSB.Results.LiveResults
                     (
                         x.Points, x.TensCount, x.Factor, x.Time)
                 )).ToArrayAsync();
-            await Clients.All.SendAsync("ResultReceived", newResults);
+            await clientProxy.SendAsync("ResultReceived", newResults);
         }
     }
 }
