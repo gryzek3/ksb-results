@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using KSB.Results.Db;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using Reinforced.Typings.Attributes;
 
 namespace KSB.Results.LiveResults
@@ -13,15 +15,36 @@ namespace KSB.Results.LiveResults
     public record PlayerRunResult(string playerName, string courseName, SingleResult result);
     public class LiveResultsHub : Hub
     {
-        private static List<PlayerRunResult> _results = new List<PlayerRunResult>();
+        public LiveResultsHub(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+        private readonly DataContext _dataContext;
+
         public async Task SendResult(PlayerRunResult result)
         {
-            if (_results.Count > 10)
+            await _dataContext.AddAsync(new StartResult
             {
-                _results.RemoveRange(10, _results.Count - 10);
-            }
-            _results.Add(result);
-            await Clients.All.SendAsync("ResultReceived", _results);
+                Player = result.playerName,
+                Course = result.courseName,
+                Factor = result.result.Factor,
+                Points = result.result.Points,
+                TensCount = result.result.TensCount,
+                TimeStamp = DateTime.UtcNow,
+                Time = result.result.Time,
+
+            });
+            await _dataContext.SaveChangesAsync();
+            var newResults = await _dataContext.StartResults.OrderByDescending(x => x.TimeStamp)
+                .Where(x => x.TimeStamp >= DateTime.UtcNow.AddHours(-1))
+                .Select(x => new PlayerRunResult
+                 (x.Player,
+                    x.Course,
+                     new SingleResult
+                    (
+                        x.Points, x.TensCount, x.Factor, x.Time)
+                )).ToArrayAsync();
+            await Clients.All.SendAsync("ResultReceived", newResults);
         }
     }
 }
