@@ -60,7 +60,8 @@ try
                     .WithMethods("PUT", "DELETE", "GET", "POST", "OPTIONS")
                     .AllowAnyHeader()
                     .AllowCredentials());
-
+    app.Logger.LogWarning("Cors: ");
+    app.Logger.LogWarning(app.Configuration.GetValue<string>("CorsAllowedOrigins"));
     app.MapGet("/generateLicenseRequests", async (LicenseRequestsGenerator worker) => await worker.Run()).RequireAuthorization();
     app.MapGet("/", () => "WOOOOOO!");
     app.MapHub<LiveResultsHub>("/LiveResultsHub");
